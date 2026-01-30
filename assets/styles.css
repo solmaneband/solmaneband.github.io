@@ -183,10 +183,7 @@ section {
   padding: 3rem 2vw;
   max-width: 1100px;
   margin: 0 auto;
-}
-#music h2 {
-  color: #FFD700; /* Gold color to match album cover */
-}
+
 .music-list {
   display: flex;
   flex-wrap: wrap;
