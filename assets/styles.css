@@ -22,20 +22,6 @@ body {
   color: var(--text);
   min-height: 100vh;
 }
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 1.5rem 3vw;
-  background: var(--primary);
-  box-shadow: var(--shadow);
-  position: sticky;
-  top: 0;
-  z-index: 10;
-}
-  font-size: 2rem;
-  font-weight: bold;
-  letter-spacing: 0.1em;
-  color: var(--accent);
 header {
   display: flex;
   flex-direction: column;
@@ -50,8 +36,13 @@ header {
 .logo {
   display: flex;
   align-items: center;
+  justify-content: center;
   gap: 0.7rem;
   height: 48px;
+  position: absolute;
+  top: 1.5rem;
+  left: 50%;
+  transform: translateX(-50%);
 }
 .logo-symbol {
   height: 48px;
@@ -123,6 +114,8 @@ nav .burger span {
   }
   nav .burger {
     display: flex;
+    top: 1rem;
+    transform: none;
   }
   nav {
     justify-content: flex-start;
