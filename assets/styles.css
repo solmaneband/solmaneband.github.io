@@ -38,9 +38,9 @@ body {
   color: var(--accent);
 header {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
   align-items: center;
-  padding: 1.5rem 3vw;
+  padding: 1.5rem 3vw 0 3vw;
   background: var(--primary);
   box-shadow: var(--shadow);
   position: sticky;
@@ -65,12 +65,68 @@ header {
   width: auto;
   filter: drop-shadow(0 2px 2px #0008);
 }
+nav {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  position: relative;
+}
 nav ul {
   list-style: none;
   display: flex;
   gap: 2rem;
   margin: 0;
   padding: 0;
+  justify-content: center;
+  align-items: center;
+}
+nav .burger {
+  display: none;
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 36px;
+  height: 36px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 20;
+}
+nav .burger span {
+  display: block;
+  width: 28px;
+  height: 4px;
+  margin: 4px 0;
+  background: #fff;
+  border-radius: 2px;
+  transition: 0.3s;
+}
+@media (max-width: 700px) {
+  nav ul {
+    flex-direction: column;
+    background: var(--primary);
+    position: fixed;
+    top: 0;
+    left: -220px;
+    width: 200px;
+    height: 100vh;
+    gap: 1.5rem;
+    padding-top: 5rem;
+    box-shadow: 2px 0 16px #0008;
+    transition: left 0.3s cubic-bezier(.77,0,.18,1);
+    z-index: 15;
+  }
+  nav ul.open {
+    left: 0;
+  }
+  nav .burger {
+    display: flex;
+  }
+  nav {
+    justify-content: flex-start;
+  }
 }
 nav a {
   color: var(--text);
@@ -127,6 +183,9 @@ section {
   padding: 3rem 2vw;
   max-width: 1100px;
   margin: 0 auto;
+}
+#music h2 {
+  color: #FFD700; /* Gold color to match album cover */
 }
 .music-list {
   display: flex;
@@ -189,7 +248,7 @@ form input, form textarea {
 }
 form button {
   background: var(--accent);
-  color: var(--text);
+  color: #000;
   border: none;
   padding: 0.9rem;
   border-radius: 0.5rem;
