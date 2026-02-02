@@ -279,3 +279,20 @@ footer {
     padding: 2rem 1vw;
   }
 }
+
+/* Mobile responsive mailing list */
+@media (max-width: 600px) {
+  #contact-form > div {
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+  
+  #contact-form input[type="email"] {
+    width: 100% !important;
+  }
+  
+  #contact-form button[type="submit"] {
+    width: 100% !important;
+    padding: 1.2rem 1.5rem !important;
+  }
+}
