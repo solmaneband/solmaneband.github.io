@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>Gallery - SOLMÅNE</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="assets/styles.css">
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Lato', Arial, sans-serif;
+      background: #000;
+      color: #fff;
+    }
+    
+    .gallery-header {
+      padding: 3rem 2rem;
+      text-align: center;
+      background: #0a0a0a;
+      border-bottom: 1px solid #222;
+    }
+    
+    .gallery-header h1 {
+      font-size: 3rem;
+      letter-spacing: 0.2em;
+      margin: 0 0 1rem 0;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+    
+    .back-button {
+      display: inline-block;
+      padding: 1rem 2rem;
+      background: #fff;
+      color: #000;
+      text-decoration: none;
+      border-radius: 6px;
+      font-weight: bold;
+      letter-spacing: 0.08em;
+      margin-top: 2rem;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .back-button:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 16px rgba(255,255,255,0.3);
+    }
+    
+    .full-gallery {
+      padding: 4rem 2rem;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    
+    .full-gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+    }
+    
+    .gallery-item {
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 8px;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    
+    .gallery-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 8px 32px rgba(255,255,255,0.2);
+    }
+    
+    .gallery-item img {
+      width: 100%;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+    }
+  </style>
+</head>
+<body>
+  <div class="gallery-header">
+    <h1>SOLMÅNE GALLERY</h1>
+    <p style="font-size: 1.2rem; color: #999; margin: 0;">All Photos</p>
+    <a href="index.html" class="back-button">← BACK TO HOME</a>
+  </div>
+  
+  <div class="full-gallery">
+    <div class="full-gallery-grid" id="full-gallery-grid">
+      <!-- Images will be loaded here -->
+    </div>
+  </div>
+  
+  <!-- Lightbox Modal -->
+  <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center;">
+    <button id="prev-btn" style="position:absolute; left:2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.1); border:2px solid #fff; color:#fff; font-size:2rem; padding:1rem 1.5rem; cursor:pointer; border-radius:50%; transition:background 0.3s; z-index:10000;">‹</button>
+    <img id="lightbox-img" src="" alt="Gallery Image" style="max-width:90%; max-height:90%; object-fit:contain; transition:transform 0.3s;">
+    <button id="next-btn" style="position:absolute; right:2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.1); border:2px solid #fff; color:#fff; font-size:2rem; padding:1rem 1.5rem; cursor:pointer; border-radius:50%; transition:background 0.3s; z-index:10000;">›</button>
+    <button id="close-btn" style="position:absolute; top:2rem; right:2rem; background:rgba(255,255,255,0.1); border:2px solid #fff; color:#fff; font-size:1.5rem; padding:0.5rem 1rem; cursor:pointer; border-radius:4px; transition:background 0.3s; z-index:10000;">✕</button>
+  </div>
+
+  <script>
+    const galleryImages = [
+      'assets/gallery/906e1e0a-c4f8-4366-9acd-c3b5c73e259a.jpeg',
+      'assets/gallery/WhatsApp Image 2026-02-02 at 03.24.05.jpeg',
+      'assets/gallery/WhatsApp Image 2026-02-02 at 03.36.26.jpeg',
+      'assets/gallery/WhatsApp Image 2026-02-02 at 10.40.13.jpeg'
+    ];
+    
+    const galleryGrid = document.getElementById('full-gallery-grid');
+    const lightbox = document.getElementById('lightbox');
+    const lightboxImg = document.getElementById('lightbox-img');
+    const closeBtn = document.getElementById('close-btn');
+    const prevBtn = document.getElementById('prev-btn');
+    const nextBtn = document.getElementById('next-btn');
+    
+    let currentImageIndex = 0;
+    
+    // Load gallery images
+    galleryImages.forEach((imagePath, index) => {
+      const imageContainer = document.createElement('div');
+      imageContainer.className = 'gallery-item';
+      
+      const img = document.createElement('img');
+      img.src = imagePath;
+      img.alt = 'Gallery Image';
+      
+      imageContainer.appendChild(img);
+      imageContainer.addEventListener('click', () => openLightbox(index));
+      galleryGrid.appendChild(imageContainer);
+    });
+    
+    function openLightbox(index) {
+      currentImageIndex = index;
+      lightboxImg.src = galleryImages[index];
+      lightbox.style.display = 'flex';
+      document.body.style.overflow = 'hidden';
+    }
+    
+    function closeLightbox() {
+      lightbox.style.display = 'none';
+      document.body.style.overflow = 'auto';
+    }
+    
+    function showNextImage() {
+      currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentImageIndex];
+    }
+    
+    function showPrevImage() {
+      currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
+      lightboxImg.src = galleryImages[currentImageIndex];
+    }
+    
+    closeBtn.addEventListener('click', closeLightbox);
+    nextBtn.addEventListener('click', showNextImage);
+    prevBtn.addEventListener('click', showPrevImage);
+    
+    lightbox.addEventListener('click', (e) => {
+      if (e.target === lightbox) closeLightbox();
+    });
+    
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (lightbox.style.display === 'flex') {
+        if (e.key === 'Escape') closeLightbox();
+        if (e.key === 'ArrowRight') showNextImage();
+        if (e.key === 'ArrowLeft') showPrevImage();
+      }
+    });
+    
+    // Hover effects for buttons
+    [prevBtn, nextBtn, closeBtn].forEach(btn => {
+      btn.addEventListener('mouseenter', () => btn.style.background = 'rgba(255,255,255,0.3)');
+      btn.addEventListener('mouseleave', () => btn.style.background = 'rgba(255,255,255,0.1)');
+    });
+  </script>
+</body>
+</html>

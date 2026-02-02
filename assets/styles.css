@@ -352,13 +352,27 @@ footer {
 
 /* Mobile specific adjustments */
 @media (max-width: 768px) {
-  #main-nav {
-    display: none;
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
   }
   
-  #nav-list.open {
-    right: 1rem !important;
-    left: 1rem !important;
+  section {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+  
+  h1, h2, h3 {
+    text-align: center;
+  }
+  
+  div[style*="text-align:center"] {
+    width: 100%;
   }
 }
 
