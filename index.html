@@ -162,14 +162,20 @@
   <script src="assets/scripts.js"></script>
   
   <script>
-    // Slideshow functionality
-    const slideshowImagesAll = [
-      'assets/slideshow/IMG_3741.png',
-      'assets/slideshow/IMG_3616-2.jpg',
-      'assets/slideshow/IMG_3714.png',
-      'assets/slideshow/IMG_3623.jpg',
-      'assets/slideshow/WhatsApp Image 2026-02-02 at 03.24.05.jpeg'
-    ];
+    // Slideshow functionality with responsive folders
+    function getSlideshowImages() {
+      const isMobile = window.innerWidth <= 768;
+      const folder = isMobile ? 'assets/slideshow/mobile' : 'assets/slideshow/desktop';
+      return [
+        `${folder}/IMG_3741.png`,
+        `${folder}/IMG_3616-2.jpg`,
+        `${folder}/IMG_3714.png`,
+        `${folder}/IMG_3623.jpg`,
+        `${folder}/WhatsApp Image 2026-02-02 at 03.24.05.jpeg`
+      ];
+    }
+    
+    let slideshowImagesAll = getSlideshowImages();
     
     // Shuffle function
     function shuffleArray(array) {
@@ -185,7 +191,7 @@
     const firstImage = slideshowImagesAll[0];
     const remainingImages = slideshowImagesAll.slice(1);
     const shuffledRemaining = shuffleArray(remainingImages);
-    const slideshowImages = [firstImage, ...shuffledRemaining];
+    let slideshowImages = [firstImage, ...shuffledRemaining];
     
     let currentSlideIndex = 0;
     const slideshowBg = document.getElementById('slideshow-bg');
@@ -226,6 +232,24 @@
     
     // Change image every 5 seconds
     setInterval(updateSlideshow, 5000);
+    
+    // Handle window resize to switch folders if needed
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(() => {
+        const newImages = getSlideshowImages();
+        const folder = window.innerWidth <= 768 ? 'mobile' : 'desktop';
+        console.log('Switched to', folder, 'slideshow folder');
+        slideshowImagesAll = newImages;
+        const newFirst = newImages[0];
+        const newRemaining = newImages.slice(1);
+        const newShuffled = shuffleArray(newRemaining);
+        slideshowImages = [newFirst, ...newShuffled];
+        currentSlideIndex = 0;
+      }, 250);
+    });
+    
     
     // Gallery with lightbox functionality
     const galleryImages = [
