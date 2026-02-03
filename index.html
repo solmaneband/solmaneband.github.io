@@ -192,7 +192,7 @@
     
     function updateSlideshow() {
       const img = document.createElement('div');
-      img.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; background-size:cover; background-position:center; background-repeat:no-repeat; transition:opacity 1s ease-in-out; opacity:0;';
+      img.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; background-size:contain; background-position:center; background-repeat:no-repeat; transition:opacity 1s ease-in-out; opacity:0;';
       img.style.backgroundImage = `url('${slideshowImages[currentSlideIndex]}')`;
       
       slideshowBg.appendChild(img);
@@ -227,11 +227,10 @@
     
     // Gallery with lightbox functionality
     const galleryImages = [
-      'assets/gallery/IMG_3741.png',
-      'assets/gallery/IMG_3616-2.jpg',
-      'assets/gallery/IMG_3714.png',
-      'assets/gallery/IMG_3623.jpg',
-      'assets/gallery/WhatsApp Image 2026-02-02 at 03.24.05.jpeg'
+      'assets/gallery/906e1e0a-c4f8-4366-9acd-c3b5c73e259a.jpeg',
+      'assets/gallery/WhatsApp Image 2026-02-02 at 03.24.05.jpeg',
+      'assets/gallery/WhatsApp Image 2026-02-02 at 03.36.26.jpeg',
+      'assets/gallery/WhatsApp Image 2026-02-02 at 10.40.13.jpeg'
     ];
     
     const galleryGrid = document.getElementById('gallery-grid');
