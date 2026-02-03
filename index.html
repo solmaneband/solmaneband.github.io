@@ -27,10 +27,12 @@
   <!-- Main Content -->
   <main>
     <!-- Hero Banner Section -->
-    <section id="home" style="position:relative; min-height:80vh; display:flex; align-items:center; justify-content:center; background:url('https://f4.bcbits.com/img/a1811847526_10.jpg') center/cover;">
-      <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6);"></div>
-      <div style="position:relative; z-index:2; text-align:center; padding:3rem 2rem;">
-        <h1 style="font-size:4rem; font-weight:900; letter-spacing:0.3em; margin:0 0 2rem 0;">SOLMÅNE</h1>
+    <section id="home" style="position:relative; min-height:80vh; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+      <!-- Slideshow Background -->
+      <div id="slideshow-bg" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0;"></div>
+      <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1;"></div>
+      <div style="position:relative; z-index:2; text-align:center; padding:3rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+        <img src="assets/logotextwnobg50p.png" alt="SOLMÅNE" style="max-width:90%; width:500px; height:auto; margin:0 0 2rem 0; display:block;">
         <div style="display:flex; gap:2rem; justify-content:center; align-items:center; margin-top:3rem;">
           <a href="https://www.facebook.com/profile.php?id=61585087408800" target="_blank" aria-label="Facebook" style="opacity:0.8; transition:opacity 0.3s;">
             <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
@@ -54,9 +56,18 @@
         <h2 style="font-size:3rem; letter-spacing:0.2em; margin-bottom:1.5rem; font-weight:900; text-transform:uppercase;">UPCOMING SHOWS</h2>
         <p style="font-size:1.2rem; color:#999; margin-bottom:4rem; letter-spacing:0.05em;">CHECK BACK FOR TOUR DATES</p>
         
-        <div style="max-width:900px; margin:0 auto; padding:3rem; background:#111; border:1px solid #222; border-radius:8px;">
-          <p style="font-size:1.3rem; color:#666; margin:0;">No upcoming dates at this time.</p>
-          <p style="font-size:1rem; color:#444; margin-top:1.5rem;">Stay tuned for announcements!</p>
+        <div id="tour-dates-container" style="max-width:900px; margin:0 auto;">
+          <!-- Loading state -->
+          <div id="tour-loading" style="padding:3rem; background:#111; border:1px solid #222; border-radius:8px;">
+            <p style="font-size:1.3rem; color:#666; margin:0;">Loading tour dates...</p>
+          </div>
+          <!-- Events will be loaded here -->
+          <div id="tour-events" style="display:none;"></div>
+          <!-- No events state -->
+          <div id="tour-no-events" style="display:none; padding:3rem; background:#111; border:1px solid #222; border-radius:8px;">
+            <p style="font-size:1.3rem; color:#666; margin:0;">No upcoming dates at this time.</p>
+            <p style="font-size:1rem; color:#444; margin-top:1.5rem;">Stay tuned for announcements!</p>
+          </div>
         </div>
       </div>
     </section>
@@ -105,41 +116,6 @@
       </div>
     </section>
 
-    <!-- Merch Section -->
-    <section id="merch" style="background:#0a0a0a; padding:6rem 2rem; text-align:center;">
-      <div style="max-width:1400px; margin:0 auto;">
-        <h2 style="font-size:3rem; letter-spacing:0.2em; margin-bottom:4rem; font-weight:900; text-transform:uppercase;">MERCH</h2>
-        
-        <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:2.5rem; margin-bottom:4rem;">
-          <!-- Merch Placeholder 1 -->
-          <div style="background:#111; border:1px solid #222; border-radius:8px; overflow:hidden; transition:transform 0.3s, box-shadow 0.3s;">
-            <div style="width:100%; aspect-ratio:1; background:#1a1a1a; display:flex; align-items:center; justify-content:center;">
-              <span style="font-size:4rem; opacity:0.3;">👕</span>
-            </div>
-            <div style="padding:1.5rem;">
-              <h3 style="font-size:1.1rem; margin-bottom:0.5rem; letter-spacing:0.08em; font-weight:700; text-transform:uppercase;">BAND T-SHIRT</h3>
-              <p style="color:#888; margin-bottom:1.5rem; font-size:0.95rem;">Coming Soon</p>
-              <button disabled style="padding:0.9rem 2rem; background:#333; color:#666; border:none; border-radius:4px; font-weight:bold; letter-spacing:0.05em; cursor:not-allowed;">COMING SOON</button>
-            </div>
-          </div>
-          
-          <!-- Merch Placeholder 2 -->
-          <div style="background:#111; border:1px solid #222; border-radius:8px; overflow:hidden; transition:transform 0.3s, box-shadow 0.3s;">
-            <div style="width:100%; aspect-ratio:1; background:#1a1a1a; display:flex; align-items:center; justify-content:center;">
-              <span style="font-size:4rem; opacity:0.3;">💿</span>
-            </div>
-            <div style="padding:1.5rem;">
-              <h3 style="font-size:1.1rem; margin-bottom:0.5rem; letter-spacing:0.08em; font-weight:700; text-transform:uppercase;">VINYL RELEASE</h3>
-              <p style="color:#888; margin-bottom:1.5rem; font-size:0.95rem;">Coming Soon</p>
-              <button disabled style="padding:0.9rem 2rem; background:#333; color:#666; border:none; border-radius:4px; font-weight:bold; letter-spacing:0.05em; cursor:not-allowed;">COMING SOON</button>
-            </div>
-          </div>
-        </div>
-        
-        <a href="https://solmane.bandcamp.com/" target="_blank" style="display:inline-block; padding:1.2rem 3rem; background:#fff; color:#000; text-decoration:none; border-radius:6px; font-weight:bold; font-size:1.1rem; letter-spacing:0.1em; transition:transform 0.3s, box-shadow 0.3s; box-shadow:0 4px 16px rgba(255,255,255,0.2); text-transform:uppercase;">SHOP ALL</a>
-      </div>
-    </section>
-
     <!-- Gallery Section -->
     <section id="gallery" style="background:#0a0a0a; padding:6rem 2rem; text-align:center;">
       <div style="max-width:1400px; margin:0 auto;">
@@ -180,6 +156,147 @@
   <script src="assets/scripts.js"></script>
   
   <script>
+    // Slideshow functionality
+    const slideshowImagesAll = [
+      'assets/slideshow/IMG_3741.png',
+      'assets/slideshow/IMG_3616-2.jpg',
+      'assets/slideshow/IMG_3714.png',
+      'assets/slideshow/IMG_3623.jpg',
+      'assets/slideshow/WhatsApp Image 2026-02-02 at 03.24.05.jpeg'
+    ];
+    
+    // Shuffle function
+    function shuffleArray(array) {
+      const shuffled = [...array];
+      for (let i = shuffled.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+      }
+      return shuffled;
+    }
+    
+    // First image stays first, rest are shuffled
+    const firstImage = slideshowImagesAll[0];
+    const remainingImages = slideshowImagesAll.slice(1);
+    const shuffledRemaining = shuffleArray(remainingImages);
+    const slideshowImages = [firstImage, ...shuffledRemaining];
+    
+    let currentSlideIndex = 0;
+    const slideshowBg = document.getElementById('slideshow-bg');
+    
+    function updateSlideshow() {
+      const img = document.createElement('div');
+      img.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; background-size:cover; background-position:center; transition:opacity 1s ease-in-out; opacity:0;';
+      img.style.backgroundImage = `url('${slideshowImages[currentSlideIndex]}')`;
+      
+      slideshowBg.appendChild(img);
+      
+      // Fade in new image
+      setTimeout(() => {
+        img.style.opacity = '1';
+      }, 50);
+      
+      // Remove old images after transition
+      setTimeout(() => {
+        const children = slideshowBg.children;
+        while (children.length > 1) {
+          slideshowBg.removeChild(children[0]);
+        }
+      }, 1050);
+      
+      currentSlideIndex = (currentSlideIndex + 1) % slideshowImages.length;
+      
+      // Re-shuffle after completing one cycle (except first image)
+      if (currentSlideIndex === 0) {
+        const newShuffled = shuffleArray(remainingImages);
+        slideshowImages.splice(1, slideshowImages.length - 1, ...newShuffled);
+      }
+    }
+    
+    // Initialize first image
+    updateSlideshow();
+    
+    // Change image every 5 seconds
+    setInterval(updateSlideshow, 5000);
+    
+    // Bandsintown Integration
+    async function loadBandsintownEvents() {
+      const artistId = '15624955';
+      const apiUrl = `https://rest.bandsintown.com/artists/id_${artistId}/events?app_id=solmane_website`;
+      
+      const tourLoading = document.getElementById('tour-loading');
+      const tourEvents = document.getElementById('tour-events');
+      const tourNoEvents = document.getElementById('tour-no-events');
+      
+      try {
+        const response = await fetch(apiUrl);
+        const events = await response.json();
+        
+        // Hide loading
+        tourLoading.style.display = 'none';
+        
+        if (events && events.length > 0) {
+          // Show events
+          tourEvents.style.display = 'block';
+          
+          events.forEach(event => {
+            const eventDate = new Date(event.datetime);
+            const formattedDate = eventDate.toLocaleDateString('en-US', { 
+              weekday: 'short', 
+              month: 'short', 
+              day: 'numeric', 
+              year: 'numeric' 
+            });
+            const formattedTime = eventDate.toLocaleTimeString('en-US', { 
+              hour: '2-digit', 
+              minute: '2-digit' 
+            });
+            
+            const eventDiv = document.createElement('div');
+            eventDiv.style.cssText = 'background:#111; border:1px solid #222; border-radius:8px; padding:2rem; margin-bottom:1.5rem; transition:transform 0.3s, box-shadow 0.3s; cursor:pointer;';
+            eventDiv.addEventListener('mouseenter', () => {
+              eventDiv.style.transform = 'translateY(-3px)';
+              eventDiv.style.boxShadow = '0 8px 24px rgba(255,255,255,0.1)';
+            });
+            eventDiv.addEventListener('mouseleave', () => {
+              eventDiv.style.transform = 'translateY(0)';
+              eventDiv.style.boxShadow = 'none';
+            });
+            
+            eventDiv.innerHTML = `
+              <div style="display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:1.5rem;">
+                <div style="text-align:left; flex:1; min-width:250px;">
+                  <div style="font-size:1rem; color:#999; margin-bottom:0.5rem; letter-spacing:0.05em;">${formattedDate} • ${formattedTime}</div>
+                  <div style="font-size:1.4rem; font-weight:700; margin-bottom:0.5rem; letter-spacing:0.05em;">${event.venue.name}</div>
+                  <div style="font-size:1rem; color:#ccc;">${event.venue.city}, ${event.venue.country}</div>
+                  ${event.description ? `<div style="font-size:0.9rem; color:#888; margin-top:0.5rem;">${event.description}</div>` : ''}
+                </div>
+                <div>
+                  ${event.offers && event.offers.length > 0 ? 
+                    `<a href="${event.offers[0].url}" target="_blank" style="display:inline-block; padding:0.9rem 2rem; background:#fff; color:#000; text-decoration:none; border-radius:4px; font-weight:bold; letter-spacing:0.05em; transition:background 0.3s;">GET TICKETS</a>` :
+                    event.url ? `<a href="${event.url}" target="_blank" style="display:inline-block; padding:0.9rem 2rem; background:#fff; color:#000; text-decoration:none; border-radius:4px; font-weight:bold; letter-spacing:0.05em; transition:background 0.3s;">MORE INFO</a>` :
+                    ''}
+                </div>
+              </div>
+            `;
+            
+            tourEvents.appendChild(eventDiv);
+          });
+        } else {
+          // Show no events message
+          tourNoEvents.style.display = 'block';
+        }
+      } catch (error) {
+        console.error('Error loading Bandsintown events:', error);
+        // Hide loading and show no events
+        tourLoading.style.display = 'none';
+        tourNoEvents.style.display = 'block';
+      }
+    }
+    
+    // Load events on page load
+    loadBandsintownEvents();
+    
     // Gallery with lightbox functionality
     const galleryImages = [
       'assets/gallery/906e1e0a-c4f8-4366-9acd-c3b5c73e259a.jpeg',

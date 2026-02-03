@@ -374,6 +374,50 @@ footer {
   div[style*="text-align:center"] {
     width: 100%;
   }
+  
+  /* Center hero content */
+  #home {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+  }
+  
+  #home > div {
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 100% !important;
+  }
+  
+  /* Center flexbox items */
+  div[style*="display:flex"] {
+    justify-content: center !important;
+    flex-wrap: wrap !important;
+  }
+  
+  /* Reduce heading sizes on mobile */
+  h1 {
+    font-size: 2.5rem !important;
+  }
+  
+  h2 {
+    font-size: 1.8rem !important;
+  }
+  
+  /* Center buttons and links */
+  a[style*="display:inline"], button {
+    display: block !important;
+    width: fit-content !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  /* Logo responsive sizing */
+  #home img {
+    max-width: 80% !important;
+    width: 300px !important;
+  }
 }
 
 /* Gallery styles */
