@@ -22,17 +22,17 @@
   <link rel="stylesheet" href="assets/theme.min.css">
   <link rel="stylesheet" href="assets/styles.css">
 </head>
-<body style="margin:0; padding:0; font-family:'Lato', Arial, sans-serif; background:#000; color:#fff; overflow-x:hidden;">
+<body style="margin:0; padding:0; font-family:'Lato', Arial, sans-serif; background:#000; color:#fff;">
 
   <!-- Main Content -->
-  <main style="width:100%; overflow-x:hidden;">
+  <main>
     <!-- Hero Banner Section -->
-    <section id="home" style="position:relative; height:100vh; width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden;">
+    <section id="home" style="position:relative; min-height:100vh; width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden;">
       <!-- Slideshow Background -->
-      <div id="slideshow-bg" style="position:fixed; top:0; left:0; width:100%; height:100vh; z-index:0;"></div>
-      <div style="position:fixed; top:0; left:0; width:100%; height:100vh; background:rgba(0,0,0,0.5); z-index:1; pointer-events:none;"></div>
+      <div id="slideshow-bg" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:0; overflow:hidden;"></div>
+      <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.6); z-index:1;"></div>
       <div style="position:relative; z-index:2; text-align:center; padding:3rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
-        <img src="assets/logotextwnobg50p.png" alt="SOLMÅNE" style="max-width:90%; width:600px; height:auto; margin:0 0 2rem 0; display:block;">
+        <img src="assets/logotextwnobg50p.png" alt="SOLMÅNE" style="max-width:90%; width:500px; height:auto; margin:0 0 2rem 0; display:block;">
         <div style="display:flex; gap:2rem; justify-content:center; align-items:center; margin-top:3rem;">
           <a href="https://www.facebook.com/profile.php?id=61585087408800" target="_blank" aria-label="Facebook" style="opacity:0.8; transition:opacity 0.3s;">
             <svg width="24" height="24" fill="#fff" viewBox="0 0 24 24"><path d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"/></svg>
@@ -192,7 +192,7 @@
     
     function updateSlideshow() {
       const img = document.createElement('div');
-      img.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; background-size:cover; background-position:center center; background-repeat:no-repeat; transition:opacity 1s ease-in-out; opacity:0;';
+      img.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; background-size:cover; background-position:center; background-repeat:no-repeat; transition:opacity 1s ease-in-out; opacity:0;';
       img.style.backgroundImage = `url('${slideshowImages[currentSlideIndex]}')`;
       
       slideshowBg.appendChild(img);
