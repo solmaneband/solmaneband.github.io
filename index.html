@@ -27,11 +27,13 @@
   <!-- Main Content -->
   <main>
     <!-- Hero Banner Section -->
-    <section id="home" style="position:relative; min-height:100vh; width:100%; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#1a1a1a;">
+    <!-- <section id="home" style="position:centered; min-height:100vh; width:100vw; left:50%; right:50%; margin-left:-50vw; margin-right:-50vw; display:flex; align-items:center; justify-content:center; overflow:hidden; background:#1a1a1a;"> -->
       <!-- Slideshow Background -->
-      <div id="slideshow-bg" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; overflow:hidden; aspect-ratio:16/9; max-height:100vh;"></div>
-      <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(26,26,26,0.3); z-index:0;"></div>
-      <div style="position:relative; z-index:2; text-align:center; padding:3rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center;">
+      <div id="slideshow-bg" style="position:absolute; top:0; left:0; width:100%; height:100%; z-index:1; overflow:hidden;"></div>
+      <div style="position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(26,26,26,0.3); z-index:0; pointer-events:none;"></div>
+      <!-- Fade Gradient Overlay -->
+      <div style="position:absolute; bottom:0; left:0; width:100%; height:400px; z-index:2; background:linear-gradient(to bottom, rgba(26,26,26,0), rgba(26,26,26,0.8), rgba(26,26,26,1)); pointer-events:none;"></div>
+      <div style="position:relative; z-index:10; text-align:center; padding:3rem 2rem; display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:100vh;">
         <img src="assets/logotextwnobg50p.png" alt="SOLMÅNE" style="max-width:95%; width:600px; height:auto; margin:0 0 2rem 0; display:block;">
         <div style="display:flex; gap:2rem; justify-content:center; align-items:center; margin-top:3rem;">
           <a href="https://www.facebook.com/profile.php?id=61585087408800" target="_blank" aria-label="Facebook" style="opacity:0.8; transition:opacity 0.3s;">
@@ -43,15 +45,41 @@
           <a href="https://open.spotify.com/artist/0XYxjDhjXN9VEgTs7Z59iq" target="_blank" aria-label="Spotify" style="opacity:0.8; transition:opacity 0.3s;">
             <svg width="32" height="32" fill="#fff" viewBox="0 0 24 24"><path d="M12 0c-6.627 0-12 5.373-12 12s5.373 12 12 12 12-5.373 12-12-5.373-12-12-12zm5.016 17.416c-.226.374-.706.494-1.067.267-2.933-1.791-6.625-2.196-10.963-1.203-.408.094-.833-.157-.927-.567-.094-.409.157-.833.567-.927 4.761-1.088 8.864-.622 12.129 1.391.361.227.479.707.261 1.039zm1.525-3.394c-.285.469-.889.618-1.35.333-3.359-2.066-8.472-2.664-12.445-1.458-.514.156-1.056-.107-1.212-.622-.156-.514.108-1.056.622-1.212 4.55-1.381 10.164-.714 14.052 1.658.46.286.608.89.333 1.301zm.131-3.538c-4.028-2.391-10.677-2.612-14.526-1.446-.618.187-1.27-.163-1.457-.782-.187-.618.163-1.27.782-1.457 4.415-1.337 11.783-1.079 16.461 1.674.553.328.733 1.041.405 1.594-.329.552-1.042.733-1.665.417z"/></svg>
           </a>
-          <a href="https://www.youtube.com/@solmane" target="_blank" aria-label="YouTube" style="opacity:0.8; transition:opacity 0.3s;">
+          <a href="https://www.youtube.com/@Solmaneofficial" target="_blank" aria-label="YouTube" style="opacity:0.8; transition:opacity 0.3s;">
             <svg width="32" height="32" fill="#fff" viewBox="0 0 24 24"><path d="M19.615 3.184c-3.604-.246-11.631-.245-15.23 0-3.897.266-4.356 2.62-4.385 8.816.029 6.185.484 8.549 4.385 8.816 3.6.245 11.626.246 15.23 0 3.897-.266 4.356-2.62 4.385-8.816-.029-6.185-.484-8.549-4.385-8.816zm-10.615 12.816v-8l8 3.993-8 4.007z"/></svg>
           </a>
         </div>
       </div>
+      
+      <!-- Scroll Down Arrow -->
+      <button id="scroll-arrow" style="position:absolute; bottom:2rem; left:50%; transform:translateX(-50%); z-index:10; background:none; border:none; cursor:pointer; padding:0; color:#fff; opacity:0.8; transition:opacity 0.3s;" title="Scroll down">
+        <svg width="40" height="40" fill="#fff" viewBox="0 0 24 24" style="animation: pulse 2s ease-in-out infinite;">
+          <path d="M12 16.17l-4.59-4.59L6 13l6 6 6-6-1.41-1.41L12 16.17z"/>
+        </svg>
+      </button>
+      <style>
+        @keyframes pulse {
+          0%, 100% { opacity: 0.8; transform: translateY(0); }
+          50% { opacity: 0.4; transform: translateY(8px); }
+        }
+      </style>
     </section>
+    
+    <script>
+      document.getElementById('scroll-arrow').addEventListener('click', function() {
+        window.scrollBy({ top: 400, behavior: 'smooth' });
+      });
+    </script>
 
     <!-- Tour Dates Section -->
-    <section id="tour" style="background:#1a1a1a; padding:6rem 2rem; text-align:center;">
+    <section id="tour" style="background:#1a1a1a; padding:0rem; text-align:center; margin-top:1;" class="tour-section">
+      <style>
+        @media (min-width: 769px) {
+          .tour-section {
+            margin-top: 25vh !important;
+          }
+        }
+      </style>
       <div style="max-width:1200px; margin:0 auto;">
         <h2 style="font-size:3rem; letter-spacing:0.2em; margin-bottom:1.5rem; font-weight:900; text-transform:uppercase; color:#fff;">UPCOMING SHOWS</h2>
         <p style="font-size:1.2rem; color:#bbb; margin-bottom:4rem; letter-spacing:0.05em;">CHECK BACK FOR TOUR DATES</p>
@@ -154,13 +182,20 @@
     function getSlideshowImages() {
       const isMobile = window.innerWidth <= 768;
       const folder = isMobile ? 'assets/slideshow/mobile' : 'assets/slideshow/desktop';
-      return [
-        `${folder}/IMG_3741.png`,
+      return isMobile ? [
         `${folder}/IMG_3616-2.jpg`,
-        `${folder}/IMG_3714.jpeg`,
         `${folder}/IMG_3623.jpg`,
+        `${folder}/IMG_3714.jpeg`,
+        `${folder}/IMG_3741.png`,
         `${folder}/WhatsApp Image 2026-02-02 at 03.24.05.jpeg`,
         `${folder}/WhatsApp Image 2026-02-03 at 21.49.54.jpeg`
+      ] : [
+        `${folder}/IMG_1.png`,
+        `${folder}/IMG_2.png`,
+        `${folder}/IMG_3741.png`,
+        `${folder}/IMG_6.png`,
+        `${folder}/WhatsApp Image 2026-02-03 at 21.49.54.jpeg`,
+        `${folder}/WhatsApp Image 2026-02-03 at 22.59.03.jpeg`
       ];
     }
     
@@ -187,7 +222,9 @@
     
     function updateSlideshow() {
       const img = document.createElement('div');
-      img.style.cssText = `position:absolute; top:0; left:0; width:100%; height:100%; background-size:cover; background-position:center; background-repeat:no-repeat; transition:opacity 1s ease-in-out; opacity:0;`;
+      const isMobile = window.innerWidth <= 768;
+      const backgroundSize = isMobile ? 'cover' : 'contain';
+      img.style.cssText = `position:absolute; top:0; left:0; width:100%; height:100%; background-size:${backgroundSize}; background-position:center; background-repeat:no-repeat; transition:opacity 1s ease-in-out; opacity:0;`;
       img.style.backgroundImage = `url('${slideshowImages[currentSlideIndex]}')`;
       
       slideshowBg.appendChild(img);
