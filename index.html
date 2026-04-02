@@ -150,17 +150,96 @@
     </section>
 
     <!-- Gallery Section -->
-    <section id="gallery" style="background:#1a1a1a; padding:6rem 2rem; text-align:center;">
+    <section id="gallery" style="background:#1a1a1a; padding:6rem 1.2rem; text-align:center;">
       <div style="max-width:1400px; margin:0 auto;">
-        <h2 style="font-size:3rem; letter-spacing:0.2em; margin-bottom:1rem; font-weight:900; text-transform:uppercase; color:#fff;">GALLERY</h2>
-        <p style="font-size:1.2rem; color:#bbb; margin-bottom:4rem; letter-spacing:0.05em;">BEHIND THE SCENES</p>
-        
-        <div id="gallery-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(300px, 1fr)); gap:2rem;">
-          <!-- Gallery images will be loaded here -->
+        <h2 style="font-size:clamp(2rem, 6vw, 3rem); letter-spacing:0.2em; margin-bottom:1rem; font-weight:900; text-transform:uppercase; color:#fff;">GALLERY</h2>
+        <p style="font-size:clamp(0.95rem, 2.7vw, 1.2rem); color:#bbb; margin-bottom:2rem; letter-spacing:0.05em;">BEHIND THE SCENES</p>
+
+        <div class="gallery-banner" role="img" aria-label="Concert photo background">
+          <div class="gallery-banner-bg"></div>
+          <div class="gallery-banner-shade"></div>
+          <a href="gallery.html" id="view-all-btn" class="gallery-banner-btn">VIEW ALL PHOTOS</a>
         </div>
-        
-        <a href="gallery.html" id="view-all-btn" style="display:inline-block; padding:1.2rem 3rem; background:#fff; color:#1a1a1a; text-decoration:none; border-radius:6px; font-weight:bold; font-size:1.1rem; letter-spacing:0.1em; margin-top:3rem; transition:transform 0.3s, box-shadow 0.3s; box-shadow:0 4px 16px rgba(255,255,255,0.1); text-transform:uppercase;">VIEW ALL PHOTOS</a>
       </div>
+
+      <style>
+        #gallery .gallery-banner {
+          position: relative;
+          min-height: clamp(220px, 48vw, 460px);
+          border-radius: 16px;
+          overflow: hidden;
+          border: 1px solid rgba(255, 255, 255, 0.18);
+          box-shadow: 0 18px 42px rgba(0, 0, 0, 0.45);
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          isolation: isolate;
+        }
+
+        #gallery .gallery-banner-bg {
+          position: absolute;
+          inset: -14px;
+          background-image: url("assets/gallery/Concerto%20Okulto%2028-03-2026%20f.Rui%20Faria/SOLMANE-0001.jpg");
+          background-size: cover;
+          background-position: center;
+          filter: blur(8px) brightness(0.62);
+          transform: scale(1.05);
+          z-index: -2;
+        }
+
+        #gallery .gallery-banner-shade {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(135deg, rgba(0, 0, 0, 0.32), rgba(0, 0, 0, 0.56));
+          z-index: -1;
+        }
+
+        #gallery .gallery-banner-btn {
+          display: inline-flex;
+          align-items: center;
+          justify-content: center;
+          min-width: min(82vw, 360px);
+          min-height: 58px;
+          padding: 1rem 2rem;
+          border-radius: 999px;
+          border: 1px solid rgba(255, 255, 255, 0.6);
+          background: rgba(255, 255, 255, 0.16);
+          -webkit-backdrop-filter: blur(12px);
+          backdrop-filter: blur(12px);
+          color: #fff;
+          text-decoration: none;
+          text-transform: uppercase;
+          font-weight: 700;
+          letter-spacing: 0.14em;
+          font-size: clamp(0.78rem, 2.2vw, 1.02rem);
+          box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+          transition: transform 0.25s ease, background 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        #gallery .gallery-banner-btn:hover {
+          transform: translateY(-2px) scale(1.015);
+          background: rgba(255, 255, 255, 0.24);
+          box-shadow: 0 12px 28px rgba(0, 0, 0, 0.4);
+        }
+
+        @media (max-width: 768px) {
+          #gallery {
+            padding: 4rem 0.9rem !important;
+          }
+
+          #gallery .gallery-banner {
+            min-height: 240px;
+            border-radius: 12px;
+          }
+
+          #gallery .gallery-banner-btn {
+            width: min(88vw, 320px);
+            min-height: 54px;
+            letter-spacing: 0.11em;
+            padding: 0.95rem 1.2rem;
+          }
+        }
+      </style>
     </section>
   </main>
 
@@ -174,14 +253,6 @@
       <p style="color:#666; font-size:0.85rem; margin:0;">Copyright © 2026 SOLMÅNE</p>
     </div>
   </footer>
-
-  <!-- Lightbox Modal -->
-  <div id="lightbox" style="display:none; position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.95); z-index:9999; align-items:center; justify-content:center;">
-    <button id="prev-btn" style="position:absolute; left:2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.1); border:2px solid #fff; color:#fff; font-size:2rem; padding:1rem 1.5rem; cursor:pointer; border-radius:50%; transition:background 0.3s; z-index:10000;">‹</button>
-    <img id="lightbox-img" src="" alt="Gallery Image" style="max-width:90%; max-height:90%; object-fit:contain; transition:transform 0.3s;">
-    <button id="next-btn" style="position:absolute; right:2rem; top:50%; transform:translateY(-50%); background:rgba(255,255,255,0.1); border:2px solid #fff; color:#fff; font-size:2rem; padding:1rem 1.5rem; cursor:pointer; border-radius:50%; transition:background 0.3s; z-index:10000;">›</button>
-    <button id="close-btn" style="position:absolute; top:2rem; right:2rem; background:rgba(255,255,255,0.1); border:2px solid #fff; color:#fff; font-size:1.5rem; padding:0.5rem 1rem; cursor:pointer; border-radius:4px; transition:background 0.3s; z-index:10000;">✕</button>
-  </div>
 
   <!-- Scripts -->
   <script src="assets/theme.min.js"></script>
@@ -282,157 +353,6 @@
         slideshowImages = [newFirst, ...newShuffled];
         currentSlideIndex = 0;
       }, 250);
-    });
-    
-    
-    // Gallery with lightbox functionality
-    const galleryImages = [
-      'assets/gallery/492003116_1091530163010331_598431656395957600_n.jpg',
-      'assets/gallery/492015489_1091530419676972_4807756915885202911_n.jpg',
-      'assets/gallery/492184759_1091530589676955_2933509397102054037_n.jpg',
-      'assets/gallery/492198513_1091530213010326_4767019122608370415_n.jpg',
-      'assets/gallery/492211492_1091531046343576_2006445795192028767_n.jpg',
-      'assets/gallery/492239214_1091530799676934_8496284622320270927_n.jpg',
-      'assets/gallery/492530305_1091531033010244_5390981262925076487_n.jpg',
-      'assets/gallery/492553807_1091530463010301_2772295253387603181_n.jpg',
-      'assets/gallery/493532157_1091530629676951_6082116310535177516_n.jpg',
-      'assets/gallery/IMG_1.png',
-      'assets/gallery/IMG_2.png',
-      'assets/gallery/IMG_3.png',
-      'assets/gallery/IMG_3616-2.jpg',
-      'assets/gallery/IMG_3623.jpg',
-      'assets/gallery/IMG_3628.jpg',
-      'assets/gallery/IMG_3654.jpg',
-      'assets/gallery/IMG_3714.jpeg',
-      'assets/gallery/IMG_3741.png',
-      'assets/gallery/IMG_3756.jpg',
-      'assets/gallery/IMG_4.png',
-      'assets/gallery/IMG_5.png',
-      'assets/gallery/IMG_6.png',
-      'assets/gallery/IMG_7.png',
-      'assets/gallery/IMG_8.png',
-      'assets/gallery/WhatsApp Image 2026-02-02 at 03.24.05.jpeg'
-    ];
-    
-    const galleryGrid = document.getElementById('gallery-grid');
-    const lightbox = document.getElementById('lightbox');
-    const lightboxImg = document.getElementById('lightbox-img');
-    const closeBtn = document.getElementById('close-btn');
-    const prevBtn = document.getElementById('prev-btn');
-    const nextBtn = document.getElementById('next-btn');
-    
-    let currentImageIndex = 0;
-    const maxPreviewImages = 3;
-    
-    // Load gallery preview (max 4 images)
-    const imagesToShow = galleryImages.slice(0, maxPreviewImages);
-    const remainingCount = galleryImages.length - maxPreviewImages;
-    
-    imagesToShow.forEach((imagePath, index) => {
-      const imageContainer = document.createElement('div');
-      imageContainer.style.cssText = 'background:#2a2a2a; border:1px solid #444; border-radius:8px; overflow:hidden; aspect-ratio:4/3; position:relative; cursor:pointer; transition:transform 0.3s, box-shadow 0.3s;';
-      
-      const img = document.createElement('img');
-      img.src = imagePath;
-      img.alt = 'Gallery Image';
-      img.style.cssText = 'width:100%; height:100%; object-fit:cover; display:block;';
-      
-      imageContainer.appendChild(img);
-      
-      // Add overlay to 4th image if there are more images
-      if (index === maxPreviewImages - 1 && remainingCount > 0) {
-        const overlay = document.createElement('div');
-        overlay.style.cssText = 'position:absolute; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.7); display:flex; flex-direction:column; align-items:center; justify-content:center; color:#fff;';
-        overlay.innerHTML = `<span style="font-size:3rem; font-weight:900; margin-bottom:0.5rem;">+${remainingCount}</span><span style="font-size:1.2rem; letter-spacing:0.1em;">MORE PHOTOS</span>`;
-        imageContainer.appendChild(overlay);
-        
-        // Click to go to gallery page
-        imageContainer.addEventListener('click', () => {
-          window.location.href = 'gallery.html';
-        });
-      } else {
-        // Click to open lightbox
-        imageContainer.addEventListener('click', () => openLightbox(index));
-      }
-      
-      // Hover effect
-      imageContainer.addEventListener('mouseenter', () => {
-        imageContainer.style.transform = 'translateY(-5px)';
-        imageContainer.style.boxShadow = '0 8px 32px rgba(255,255,255,0.1)';
-      });
-      imageContainer.addEventListener('mouseleave', () => {
-        imageContainer.style.transform = 'translateY(0)';
-        imageContainer.style.boxShadow = 'none';
-      });
-      
-      galleryGrid.appendChild(imageContainer);
-    });
-    
-    function openLightbox(index) {
-      currentImageIndex = index;
-      lightboxImg.src = galleryImages[index];
-      lightbox.style.display = 'flex';
-      document.body.style.overflow = 'hidden';
-      
-      // Add zoom-in animation
-      lightboxImg.style.transform = 'scale(0.8)';
-      setTimeout(() => {
-        lightboxImg.style.transform = 'scale(1)';
-      }, 10);
-    }
-    
-    function closeLightbox() {
-      // Add zoom-out animation
-      lightboxImg.style.transform = 'scale(0.8)';
-      setTimeout(() => {
-        lightbox.style.display = 'none';
-        document.body.style.overflow = 'auto';
-      }, 300);
-    }
-    
-    function showNextImage() {
-      currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-      lightboxImg.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        lightboxImg.src = galleryImages[currentImageIndex];
-        lightboxImg.style.transform = 'scale(1)';
-      }, 150);
-    }
-    
-    function showPrevImage() {
-      currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-      lightboxImg.style.transform = 'scale(0.95)';
-      setTimeout(() => {
-        lightboxImg.src = galleryImages[currentImageIndex];
-        lightboxImg.style.transform = 'scale(1)';
-      }, 150);
-    }
-    
-    closeBtn.addEventListener('click', closeLightbox);
-    nextBtn.addEventListener('click', showNextImage);
-    prevBtn.addEventListener('click', showPrevImage);
-    
-    // Click on image to close
-    lightboxImg.addEventListener('click', closeLightbox);
-    
-    // Click on background to close
-    lightbox.addEventListener('click', (e) => {
-      if (e.target === lightbox) closeLightbox();
-    });
-    
-    // Keyboard navigation
-    document.addEventListener('keydown', (e) => {
-      if (lightbox.style.display === 'flex') {
-        if (e.key === 'Escape') closeLightbox();
-        if (e.key === 'ArrowRight') showNextImage();
-        if (e.key === 'ArrowLeft') showPrevImage();
-      }
-    });
-    
-    // Hover effects for navigation buttons
-    [prevBtn, nextBtn, closeBtn].forEach(btn => {
-      btn.addEventListener('mouseenter', () => btn.style.background = 'rgba(255,255,255,0.3)');
-      btn.addEventListener('mouseleave', () => btn.style.background = 'rgba(255,255,255,0.1)');
     });
   </script>
   
