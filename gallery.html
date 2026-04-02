@@ -53,15 +53,100 @@
     }
     
     .full-gallery {
-      padding: 4rem 2rem;
+      padding: clamp(1.25rem, 3vw, 4rem) clamp(0.9rem, 2.5vw, 2rem);
       max-width: 1400px;
       margin: 0 auto;
     }
     
-    .full-gallery-grid {
+    .album-section {
+      margin-bottom: 1rem;
+    }
+
+    .album-title {
+      margin: 0;
+    }
+
+    .album-toggle {
+      width: 100%;
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
+      grid-template-columns: minmax(0, 1fr) auto auto;
+      align-items: center;
+      column-gap: 1rem;
+      row-gap: 0.4rem;
+      background: #0f0f0f;
+      border: 1px solid #2d2d2d;
+      border-left: 4px solid #fff;
+      border-radius: 8px;
+      color: #f5f5f5;
+      cursor: pointer;
+      padding: 0.9rem 1rem;
+      text-align: left;
+      transition: background 0.25s, border-color 0.25s;
+    }
+
+    .album-toggle:hover {
+      background: #191919;
+      border-color: #4a4a4a;
+    }
+
+    .album-name {
+      font-size: clamp(1rem, 2.1vw, 1.6rem);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      line-height: 1.1;
+      word-break: break-word;
+    }
+
+    .album-meta {
+      font-size: clamp(0.72rem, 1.4vw, 0.95rem);
+      color: #b5b5b5;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      white-space: nowrap;
+    }
+
+    .album-caret {
+      font-size: 1.1rem;
+      transform: rotate(0deg);
+      transition: transform 0.25s;
+      color: #fff;
+    }
+
+    .album-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+      margin-top: 0.9rem;
+    }
+
+    .album-section.is-collapsed .album-caret {
+      transform: rotate(-90deg);
+    }
+
+    .album-section.is-collapsed .album-grid {
+      display: none;
+    }
+
+    @media (max-width: 760px) {
+      .album-toggle {
+        grid-template-columns: minmax(0, 1fr) auto;
+        padding: 0.8rem;
+      }
+
+      .album-meta {
+        grid-column: 1 / 2;
+        white-space: normal;
+      }
+
+      .album-caret {
+        grid-column: 2 / 3;
+        grid-row: 1 / 3;
+        justify-self: end;
+      }
+
+      .album-grid {
+        grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      }
     }
     
     .gallery-item {
@@ -89,13 +174,13 @@
 <body>
   <div class="gallery-header">
     <h1>SOLMÅNE GALLERY</h1>
-    <p style="font-size: 1.2rem; color: #999; margin: 0;">All Photos</p>
+    <p style="font-size: 1.2rem; color: #999; margin: 0;">Albums</p>
     <a href="index.html" class="back-button">← BACK TO HOME</a>
   </div>
   
   <div class="full-gallery">
-    <div class="full-gallery-grid" id="full-gallery-grid">
-      <!-- Images will be loaded here -->
+    <div id="albums-container">
+      <!-- Albums will be loaded here -->
     </div>
   </div>
   
@@ -108,35 +193,126 @@
   </div>
 
   <script>
-    const galleryImages = [
-      'assets/gallery/492003116_1091530163010331_598431656395957600_n.jpg',
-      'assets/gallery/492015489_1091530419676972_4807756915885202911_n.jpg',
-      'assets/gallery/492184759_1091530589676955_2933509397102054037_n.jpg',
-      'assets/gallery/492198513_1091530213010326_4767019122608370415_n.jpg',
-      'assets/gallery/492211492_1091531046343576_2006445795192028767_n.jpg',
-      'assets/gallery/492239214_1091530799676934_8496284622320270927_n.jpg',
-      'assets/gallery/492530305_1091531033010244_5390981262925076487_n.jpg',
-      'assets/gallery/492553807_1091530463010301_2772295253387603181_n.jpg',
-      'assets/gallery/493532157_1091530629676951_6082116310535177516_n.jpg',
-      'assets/gallery/IMG_1.png',
-      'assets/gallery/IMG_2.png',
-      'assets/gallery/IMG_3.png',
-      'assets/gallery/IMG_3616-2.jpg',
-      'assets/gallery/IMG_3623.jpg',
-      'assets/gallery/IMG_3628.jpg',
-      'assets/gallery/IMG_3654.jpg',
-      'assets/gallery/IMG_3714.jpeg',
-      'assets/gallery/IMG_3741.png',
-      'assets/gallery/IMG_3756.jpg',
-      'assets/gallery/IMG_4.png',
-      'assets/gallery/IMG_5.png',
-      'assets/gallery/IMG_6.png',
-      'assets/gallery/IMG_7.png',
-      'assets/gallery/IMG_8.png',
-      'assets/gallery/WhatsApp Image 2026-02-02 at 03.24.05.jpeg'
-    ];
-    
-    const galleryGrid = document.getElementById('full-gallery-grid');
+    const albums = {
+      'Concerto Okulto 28-03-2026 f.Rui Faria': [
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0001.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0002.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0006.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0007.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0010.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0011.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0012.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0014.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0016.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0018.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0020.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0023.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0025.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0026.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0027.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0028.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0029.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0030.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0031.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0032.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0033.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0035.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0036.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0037.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0038.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0040.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0041.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0043.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0045.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0047.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0050.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0051.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0054.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0056.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0061.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0062.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0064.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0066.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0067.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0068.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0069.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0070.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0072.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0074.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0075.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0076.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0077.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0079.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0080.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0081.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0082.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0084.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0085.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0086.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0088.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0090.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0091.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0092.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0093.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0094.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0095.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0096.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0098.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0099.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0102.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0104.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0105.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0106.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0107.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0110.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0111.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0112.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0113.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0117.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0119.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0122.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0123.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0130.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0132.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0134.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0135.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0137.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0138.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0139.jpg',
+        'assets/gallery/Concerto Okulto 28-03-2026 f.Rui Faria/SOLMANE-0140.jpg'
+      ],
+      'Concurso UMplugged 2025': [
+        'assets/gallery/Concurso UMplugged 2025/492003116_1091530163010331_598431656395957600_n.jpg',
+        'assets/gallery/Concurso UMplugged 2025/492015489_1091530419676972_4807756915885202911_n.jpg',
+        'assets/gallery/Concurso UMplugged 2025/492184759_1091530589676955_2933509397102054037_n.jpg',
+        'assets/gallery/Concurso UMplugged 2025/492198513_1091530213010326_4767019122608370415_n.jpg',
+        'assets/gallery/Concurso UMplugged 2025/492211492_1091531046343576_2006445795192028767_n.jpg',
+        'assets/gallery/Concurso UMplugged 2025/492239214_1091530799676934_8496284622320270927_n.jpg',
+        'assets/gallery/Concurso UMplugged 2025/492530305_1091531033010244_5390981262925076487_n.jpg',
+        'assets/gallery/Concurso UMplugged 2025/492553807_1091530463010301_2772295253387603181_n.jpg',
+        'assets/gallery/Concurso UMplugged 2025/493532157_1091530629676951_6082116310535177516_n.jpg'
+      ],
+      'Ensaios': [
+        'assets/gallery/Ensaios/IMG_1.png',
+        'assets/gallery/Ensaios/IMG_2.png',
+        'assets/gallery/Ensaios/IMG_3616-2.jpg',
+        'assets/gallery/Ensaios/IMG_3623.jpg',
+        'assets/gallery/Ensaios/IMG_3628.jpg',
+        'assets/gallery/Ensaios/IMG_3654.jpg',
+        'assets/gallery/Ensaios/IMG_3714.jpeg',
+        'assets/gallery/Ensaios/IMG_3741.png',
+        'assets/gallery/Ensaios/IMG_3756.jpg',
+        'assets/gallery/Ensaios/IMG_3.png',
+        'assets/gallery/Ensaios/IMG_4.png',
+        'assets/gallery/Ensaios/IMG_5.png',
+        'assets/gallery/Ensaios/IMG_6.png',
+        'assets/gallery/Ensaios/IMG_7.png',
+        'assets/gallery/Ensaios/IMG_8.png',
+        'assets/gallery/Ensaios/WhatsApp Image 2026-02-02 at 03.24.05.jpeg'
+      ]
+    };
+
+    const albumsContainer = document.getElementById('albums-container');
     const lightbox = document.getElementById('lightbox');
     const lightboxImg = document.getElementById('lightbox-img');
     const closeBtn = document.getElementById('close-btn');
@@ -144,24 +320,85 @@
     const nextBtn = document.getElementById('next-btn');
     
     let currentImageIndex = 0;
+    let currentAlbumImages = [];
     
-    // Load gallery images
-    galleryImages.forEach((imagePath, index) => {
-      const imageContainer = document.createElement('div');
-      imageContainer.className = 'gallery-item';
-      
-      const img = document.createElement('img');
-      img.src = imagePath;
-      img.alt = 'Gallery Image';
-      
-      imageContainer.appendChild(img);
-      imageContainer.addEventListener('click', () => openLightbox(index));
-      galleryGrid.appendChild(imageContainer);
+    // Load albums and their images
+    Object.entries(albums).forEach(([albumName, images]) => {
+      const section = document.createElement('section');
+      section.className = 'album-section is-collapsed';
+
+      const title = document.createElement('h2');
+      title.className = 'album-title';
+
+      const toggle = document.createElement('button');
+      toggle.className = 'album-toggle';
+      toggle.type = 'button';
+      toggle.setAttribute('aria-expanded', 'false');
+
+      const name = document.createElement('span');
+      name.className = 'album-name';
+      name.textContent = albumName;
+
+      const right = document.createElement('span');
+      right.className = 'album-meta';
+      right.textContent = `${images.length} photos`;
+
+      const caret = document.createElement('span');
+      caret.className = 'album-caret';
+      caret.setAttribute('aria-hidden', 'true');
+      caret.textContent = '▾';
+
+      toggle.appendChild(name);
+      toggle.appendChild(right);
+      toggle.appendChild(caret);
+      title.appendChild(toggle);
+
+      const grid = document.createElement('div');
+      grid.className = 'album-grid';
+
+      const gridId = `album-grid-${albumName.toLowerCase().replace(/[^a-z0-9]+/g, '-')}`;
+      grid.id = gridId;
+      toggle.setAttribute('aria-controls', gridId);
+
+      toggle.addEventListener('click', () => {
+        const isCurrentlyCollapsed = section.classList.contains('is-collapsed');
+
+        document.querySelectorAll('.album-section').forEach(albumSection => {
+          albumSection.classList.add('is-collapsed');
+          const albumToggle = albumSection.querySelector('.album-toggle');
+          if (albumToggle) albumToggle.setAttribute('aria-expanded', 'false');
+        });
+
+        if (isCurrentlyCollapsed) {
+          section.classList.remove('is-collapsed');
+        }
+
+        const isExpanded = !section.classList.contains('is-collapsed');
+        toggle.setAttribute('aria-expanded', String(isExpanded));
+      });
+
+      images.forEach((imagePath, index) => {
+        const imageContainer = document.createElement('div');
+        imageContainer.className = 'gallery-item';
+
+        const img = document.createElement('img');
+        img.src = encodeURI(imagePath);
+        img.alt = albumName;
+
+        imageContainer.appendChild(img);
+        imageContainer.addEventListener('click', () => openLightbox(images, index));
+        grid.appendChild(imageContainer);
+      });
+
+      section.appendChild(title);
+      section.appendChild(grid);
+      albumsContainer.appendChild(section);
     });
     
-    function openLightbox(index) {
+    function openLightbox(albumImages, index) {
+      currentAlbumImages = albumImages;
       currentImageIndex = index;
-      lightboxImg.src = galleryImages[index];
+      lightboxImg.src = encodeURI(currentAlbumImages[index]);
       lightbox.style.display = 'flex';
       document.body.style.overflow = 'hidden';
     }
@@ -172,13 +409,15 @@
     }
     
     function showNextImage() {
-      currentImageIndex = (currentImageIndex + 1) % galleryImages.length;
-      lightboxImg.src = galleryImages[currentImageIndex];
+      if (!currentAlbumImages.length) return;
+      currentImageIndex = (currentImageIndex + 1) % currentAlbumImages.length;
+      lightboxImg.src = encodeURI(currentAlbumImages[currentImageIndex]);
     }
     
     function showPrevImage() {
-      currentImageIndex = (currentImageIndex - 1 + galleryImages.length) % galleryImages.length;
-      lightboxImg.src = galleryImages[currentImageIndex];
+      if (!currentAlbumImages.length) return;
+      currentImageIndex = (currentImageIndex - 1 + currentAlbumImages.length) % currentAlbumImages.length;
+      lightboxImg.src = encodeURI(currentAlbumImages[currentImageIndex]);
     }
     
     closeBtn.addEventListener('click', closeLightbox);
