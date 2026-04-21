@@ -1,0 +1,118 @@
+{{Info/Banda
+| nome            = Solmåne
+| imagem          = 
+| legenda         = 
+| origem          = [[Braga]], [[Portugal]]
+| genero          = [[Rock alternativo]], [[indie rock]], [[rock acústico]]
+| ano_inicio      = 2024
+| ano_fim         = 
+| gravadora       = Independente
+| site            = {{URL|solmaneband.github.io}}
+}}
+
+'''Solmåne''' (estilizado como '''SOLMÅNE''') é uma banda portuguesa de [[rock alternativo]] formada em [[Braga]], [[Portugal]], em 2024 por estudantes da [[Universidade do Minho]]. O nome foi escolhido de forma intuitiva pelos fundadores e é frequentemente associado a uma ideia de dualidade — luz e escuridão, o bem e o mal — sem qualquer ligação específica a tradições nórdicas. A banda é conhecida pelo seu circuito universitário em Braga, onde toca regularmente no Okulto Bar, junto ao campus da Universidade do Minho, e por participar em eventos académicos como o festival [[Unplugged da AAUMinho]].
+
+== Formação ==
+
+
+A banda foi co-fundada em 2024 por Alexandre Fernandes, Nuno Leite, Bruno Coelho e Rodrigo Silva, todos estudantes na [[Universidade do Minho]]. Desde a sua origem, o grupo adotou uma abordagem artesanal (''do-it-yourself'') tanto na produção musical como na construção da sua presença online, com o próprio website da banda a ser desenvolvido internamente.{{sfn|solmaneband.github.io|2026}}
+
+A formação atual da banda inclui Nuno Leite na voz, Alexandre Fernandes na bateria, David Ferreira no baixo, Rodrigo Silva na guitarra e João Ferreira na guitarra. Bruno Coelho, um dos co-fundadores, participou na gravação do debut EP mas já não integra o alinhamento atual.{{sfn|solmane.bandcamp.com|2025}}
+
+== Carreira ==
+
+=== Demos da Lage (2025) ===
+
+Em 26 de abril de 2025, a banda lançou o seu primeiro EP, intitulado ''[[Demos da Lage]]'', de forma independente. O título tem um duplo sentido: "demos" é uma referência direta ao carácter experimental e de demonstração das gravações, e "Lage" é o nome do local onde o EP foi registado.{{sfn|solmane.bandcamp.com|2025}} O projeto foi gravado em condições domésticas e de estúdio improvisado, com os membros a descreverem o processo como uma descoberta coletiva, marcada por sessões de mistura até de madrugada e pela ausência de pressão comercial.{{sfn|solmane.bandcamp.com|2025}}
+
+O EP é composto por três temas — "Dance With the Devil", "Out of Reach" e "Balada (Lose the Light)" — com uma duração total de aproximadamente treze minutos. Está disponível em plataformas digitais como [[Spotify]], [[Apple Music]], [[Amazon Music]] e [[Bandcamp]], onde pode ser obtido gratuitamente pelo modelo ''name your price''.{{sfn|solmane.bandcamp.com|2025}}{{sfn|Spotify|2025}}
+
+=== Unplugged AAUMinho ===
+
+A Solmåne participou no festival '''Unplugged da [[Associação Académica da Universidade do Minho]]''' tanto na edição de 2025 como na de 2026, afirmando-se como uma das bandas regulares do circuito académico minhoto.{{sfn|AAUMinho|2025|2026}} Na edição de 2025, a banda contou com a colaboração de Mafalda Martins para a sua participação na competição de bandas do evento.{{sfn|Instagram: mafaldafmartins_06|2025}}
+
+=== Presença em podcast ===
+
+A banda foi entrevistada num formato de podcast disponível no [[YouTube]], onde os membros falaram sobre o seu percurso, processo criativo e visão para o projeto.{{sfn|YouTube|2025}}
+
+=== Okulto Bar ===
+
+O palco mais frequente da banda é o Okulto Bar, um espaço cultural situado junto ao campus da Universidade do Minho em Braga, que serve de ponto de encontro habitual para a cena musical universitária local.{{sfn|solmane.bandcamp.com|2025}}
+
+== Discografia ==
+
+=== EPs ===
+
+{| class="wikitable"
+|-
+! Título !! Ano !! Editora !! Notas
+|-
+| ''[[Demos da Lage]]'' || 2025 || Independente || EP de estreia; 3 faixas; lançado a 26 de abril de 2025
+|}
+
+=== Demos da Lage ===
+
+{| class="wikitable"
+|-
+! N.º !! Título !! Duração
+|-
+| 1 || "Dance With the Devil" || 3:23
+|-
+| 2 || "Out of Reach" || 3:43
+|-
+| 3 || "Balada (Lose the Light)" || 6:00
+|-
+| colspan="2" | '''Duração total:''' || '''13:06'''
+|}
+
+'''Créditos de gravação'''
+
+Voz: Nuno Leite; Bateria: Alexandre Fernandes; Baixo: Bruno Coelho; Guitarras: Rodrigo Silva e João Ferreira. A capa foi criada por Nuno Leite. A banda agradece o envolvimento de amigos e família no processo de gravação.{{sfn|solmane.bandcamp.com|2025}}
+
+== Membros ==
+
+=== Alinhamento atual ===
+
+{| class="wikitable"
+|-
+! Membro !! Instrumento !! Período
+|-
+| Nuno Leite || Voz || 2024–presente
+|-
+| Alexandre Fernandes || Bateria || 2024–presente
+|-
+| David Ferreira || Baixo || data–presente
+|-
+| Rodrigo Silva || Guitarra || 2024–presente
+|-
+| João Ferreira || Guitarra || data–presente
+|}
+
+=== Membros anteriores ===
+
+{| class="wikitable"
+|-
+! Membro !! Instrumento !! Período
+|-
+| Bruno Coelho || Baixo || 2024–data
+|}
+
+== Ligações externas ==
+
+* [https://solmaneband.github.io/ Website oficial]
+* [https://open.spotify.com/artist/0XYxjDhjXN9VEgTs7Z59iq Solmåne no Spotify]
+* [https://solmane.bandcamp.com/album/demos-da-lage ''Demos da Lage'' no Bandcamp]
+* [https://www.instagram.com/solmaneofficial/ Solmåne no Instagram]
+* [https://www.youtube.com/@Solmaneofficial/ Solmåne no YouTube]
+* [https://www.youtube.com/watch?v=gz7kYAouGes Entrevista em podcast (YouTube)]
+
+== Referências ==
+
+{{Referências}}
+
+[[Categoria:Bandas de Portugal]]
+[[Categoria:Bandas de rock alternativo]]
+[[Categoria:Bandas formadas em 2024]]
+[[Categoria:Música em Braga]]
+[[Categoria:Bandas independentes]]
+[[Categoria:Universidade do Minho]]
