@@ -1,5 +1,5 @@
 (() => {
-  const cursorAsset = 'assets/apple-touch-icon.png';
+  const cursorAsset = 'assets/cursor-star.png';
   const prefersFinePointer = window.matchMedia('(pointer: fine)').matches;
 
   if (!prefersFinePointer) {
@@ -16,7 +16,7 @@
     const cursor = document.createElement('div');
     cursor.className = 'star-cursor';
     cursor.setAttribute('aria-hidden', 'true');
-    cursor.innerHTML = `<img src="${cursorAsset}" alt="">`;
+    cursor.innerHTML = `<img src="${cursorAsset}" alt="" draggable="false">`;
     document.body.appendChild(cursor);
 
     let targetX = window.innerWidth / 2;

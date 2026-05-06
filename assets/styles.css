@@ -14,6 +14,7 @@
 }
 
 @media (pointer: fine) {
+  html.cursor-enabled,
   html.cursor-enabled body,
   html.cursor-enabled a,
   html.cursor-enabled button,
@@ -21,8 +22,9 @@
   html.cursor-enabled textarea,
   html.cursor-enabled select,
   html.cursor-enabled label,
-  html.cursor-enabled [role='button'] {
-    cursor: url('apple-touch-icon.png') 32 32, auto;
+  html.cursor-enabled [role='button'],
+  html.cursor-enabled * {
+    cursor: none !important;
   }
 
   .star-cursor {
@@ -54,6 +56,8 @@
     height: 100%;
     user-select: none;
     -webkit-user-drag: none;
+    -webkit-user-select: none;
+    pointer-events: none;
   }
 }
 * {
