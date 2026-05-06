@@ -14,7 +14,6 @@
 }
 
 @media (pointer: fine) {
-  html.cursor-enabled,
   html.cursor-enabled body,
   html.cursor-enabled a,
   html.cursor-enabled button,
@@ -23,7 +22,7 @@
   html.cursor-enabled select,
   html.cursor-enabled label,
   html.cursor-enabled [role='button'] {
-    cursor: none !important;
+    cursor: url('apple-touch-icon.png') 32 32, auto;
   }
 
   .star-cursor {

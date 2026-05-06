@@ -351,6 +351,14 @@
     
     let currentImageIndex = 0;
     let currentAlbumImages = [];
+
+    function previewPathFor(imagePath) {
+      return encodeURI(
+        imagePath
+          .replace('assets/gallery/', 'assets/gallery-previews/')
+          .replace(/\.(jpg|jpeg|png)$/i, '.jpg')
+      );
+    }
     
     // Load albums and their images
     Object.entries(albums).forEach(([albumName, images]) => {
@@ -412,8 +420,10 @@
         imageContainer.className = 'gallery-item';
 
         const img = document.createElement('img');
-        img.src = encodeURI(imagePath);
+        img.src = previewPathFor(imagePath);
         img.alt = albumName;
+        img.loading = 'lazy';
+        img.decoding = 'async';
 
         imageContainer.appendChild(img);
         imageContainer.addEventListener('click', () => openLightbox(images, index));
