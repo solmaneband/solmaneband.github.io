@@ -434,20 +434,21 @@
     function getSlideshowImages() {
       const isMobile = window.innerWidth <= 768;
       const folder = isMobile ? 'assets/slideshow/mobile' : 'assets/slideshow/desktop';
+      const previewFolder = isMobile ? 'assets/slideshow/mobile-preview' : 'assets/slideshow/desktop-preview';
       return isMobile ? [
-        `${folder}/umplugged-124_55224155373_o.jpg`,
-        `${folder}/IMG_1.png`,
-        `${folder}/IMG_2.png`,
-        `${folder}/IMG_6.png`,
-        `${folder}/WhatsApp Image 2026-02-03 at 21.49.54.jpeg`,
-        `${folder}/WhatsApp Image 2026-02-03 at 22.59.03.jpeg`
+        { full: `${folder}/umplugged-124_55224155373_o.jpg`, preview: `${previewFolder}/umplugged-124_55224155373_o.jpg` },
+        { full: `${folder}/IMG_1.png`, preview: `${previewFolder}/IMG_1.jpg` },
+        { full: `${folder}/IMG_2.png`, preview: `${previewFolder}/IMG_2.jpg` },
+        { full: `${folder}/IMG_6.png`, preview: `${previewFolder}/IMG_6.jpg` },
+        { full: `${folder}/WhatsApp Image 2026-02-03 at 21.49.54.jpeg`, preview: `${previewFolder}/WhatsApp Image 2026-02-03 at 21.49.54.jpg` },
+        { full: `${folder}/WhatsApp Image 2026-02-03 at 22.59.03.jpeg`, preview: `${previewFolder}/WhatsApp Image 2026-02-03 at 22.59.03.jpg` }
       ] : [
-        `${folder}/umplugged-114_55224154818_o.jpg`,
-        `${folder}/IMG_1.png`,
-        `${folder}/IMG_2.png`,
-        `${folder}/IMG_6.png`,
-        `${folder}/WhatsApp Image 2026-02-03 at 21.49.54.jpeg`,
-        `${folder}/WhatsApp Image 2026-02-03 at 22.59.03.jpeg`
+        { full: `${folder}/umplugged-114_55224154818_o.jpg`, preview: `${previewFolder}/umplugged-114_55224154818_o.jpg` },
+        { full: `${folder}/IMG_1.png`, preview: `${previewFolder}/IMG_1.jpg` },
+        { full: `${folder}/IMG_2.png`, preview: `${previewFolder}/IMG_2.jpg` },
+        { full: `${folder}/IMG_6.png`, preview: `${previewFolder}/IMG_6.jpg` },
+        { full: `${folder}/WhatsApp Image 2026-02-03 at 21.49.54.jpeg`, preview: `${previewFolder}/WhatsApp Image 2026-02-03 at 21.49.54.jpg` },
+        { full: `${folder}/WhatsApp Image 2026-02-03 at 22.59.03.jpeg`, preview: `${previewFolder}/WhatsApp Image 2026-02-03 at 22.59.03.jpg` }
       ];
     }
 
@@ -473,18 +474,31 @@
     const slideshowBg = document.getElementById('slideshow-bg');
 
     function updateSlideshow() {
-      const img = document.createElement('div');
+      const slide = slideshowImages[currentSlideIndex];
+      const slideDiv = document.createElement('div');
       const isMobile = window.innerWidth <= 768;
       const backgroundSize = isMobile ? 'cover' : 'contain';
-      img.style.cssText = `position:absolute; top:0; left:0; width:100%; height:100%; background-size:${backgroundSize}; background-position:center; background-repeat:no-repeat; transition:opacity 1s ease-in-out; opacity:0;`;
-      img.style.backgroundImage = `url('${slideshowImages[currentSlideIndex]}')`;
+      slideDiv.style.cssText = `position:absolute; top:0; left:0; width:100%; height:100%; background-size:${backgroundSize}; background-position:center; background-repeat:no-repeat; transition:opacity 1s ease-in-out; opacity:0;`;
 
-      slideshowBg.appendChild(img);
+      // Show compressed preview immediately
+      slideDiv.style.backgroundImage = `url('${slide.preview}')`;
 
-      // Fade in new image
+      slideshowBg.appendChild(slideDiv);
+
+      // Fade in the preview right away
       setTimeout(() => {
-        img.style.opacity = '1';
+        slideDiv.style.opacity = '1';
       }, 50);
+
+      // Load full-res in background, swap seamlessly when ready
+      const fullImg = new Image();
+      fullImg.src = slide.full;
+      fullImg.onload = () => {
+        // Only swap if this slide is still in the DOM
+        if (slideDiv.parentNode) {
+          slideDiv.style.backgroundImage = `url('${slide.full}')`;
+        }
+      };
 
       // Remove old images after transition
       setTimeout(() => {
